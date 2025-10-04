@@ -97,54 +97,61 @@
 <body>
   <div class="wrap">
     <!-- ===== NAVBAR reutilizable: copia desde <header> hasta </header> a todas tus páginas ===== -->
-    <header class="vc-header">
-<a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&amp;s" alt="Visual Corp">
-<span>Visual Corp</span>
-</a>
-<button class="vc-burger" aria-controls="vc-menu" aria-expanded="false" title="Abrir menú"><i class="fa-solid fa-bars"></i></button>
-<nav id="vc-menu" class="vc-menu" aria-label="Menú principal">
-<a id="nav-inicio" href="https://visualcorp-ec.github.io/Inicio/">Inicio</a>
-<a id="nav-contacto" href="https://visualcorp-ec.github.io/contacto/">Contacto</a>
-<a id="nav-promos" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Promociones</a>
-        <a id="nav-catalogo" href="/catalogo.html" data-pending data-match="/catalogo">Catálogo</a>
+    <header class="vc-header" role="banner">
+  <a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/" aria-label="Visual Corp - Inicio">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp">
+    <span>Visual Corp</span>
+  </a>
 
-        <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-match="/productos" data-pending aria-expanded="false">Productos <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
-          <div class="vc-submenu" role="menu">
-            <a href="/productos.html" data-pending role="menuitem">Todos</a>
-            <a href="/productos.html#letras-3d" data-pending role="menuitem">Letras 3D</a>
-            <a href="/productos.html#neon" data-pending role="menuitem">Neón</a>
-            <a href="/productos.html#rotulos" data-pending role="menuitem">Rótulos</a>
-            <a href="/productos.html#stands" data-pending role="menuitem">Stands</a>
-            <a href="/productos.html#stickers" data-pending role="menuitem">Stickers</a>
-          </div>
-        </div>
+  <button class="vc-burger" aria-controls="vc-menu" aria-expanded="false" title="Abrir menú">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+  </button>
 
-        <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-match="/impresiones" data-pending aria-expanded="false">Impresiones <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
-          <div class="vc-submenu" role="menu">
-            <a href="/impresiones.html" data-pending role="menuitem">Todas</a>
-            <a href="/impresiones.html#gigantografias" data-pending role="menuitem">Gigantografías</a>
-            <a href="/impresiones.html#microperforado" data-pending role="menuitem">Microperforado</a>
-            <a href="/impresiones.html#banners" data-pending role="menuitem">Banners</a>
-            <a href="/impresiones.html#vinil" data-pending role="menuitem">Vinil</a>
-          </div>
-        </div>
+  <nav id="vc-menu" class="vc-menu" aria-label="Menú principal">
+    <a id="nav-inicio" href="https://visualcorp-ec.github.io/Inicio/">Inicio</a>
+    <a id="nav-contacto" href="https://visualcorp-ec.github.io/contacto/">Contacto</a>
+    <a id="nav-promos" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Promociones</a>
 
-        <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-match="/servicios" data-pending aria-expanded="false">Servicios <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
-          <div class="vc-submenu" role="menu">
-            <a href="/servicios.html" data-pending role="menuitem">Todos</a>
-            <a href="/servicios.html#diseno" data-pending role="menuitem">Diseño gráfico</a>
-            <a href="/servicios.html#instalacion" data-pending role="menuitem">Instalación</a>
-            <a href="/servicios.html#mantenimiento" data-pending role="menuitem">Mantenimiento</a>
-          </div>
-        </div>
+    <!-- Bloques con submenú (aún “pronto”) -->
+    <div class="vc-has-sub">
+      <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
+        Productos <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="vc-submenu" role="menu" aria-label="Productos">
+        <a href="#" role="menuitem" aria-disabled="true">Todos (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Letras 3D (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Neón (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Rótulos (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Stands (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Stickers (pronto)</a>
+      </div>
+    </div>
 
-        <a id="nav-taller" href="/taller.html" data-pending data-match="/taller">Taller</a>
-      </nav>
-    </header>
+    <div class="vc-has-sub">
+      <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
+        Impresiones <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="vc-submenu" role="menu" aria-label="Impresiones">
+        <a href="#" role="menuitem" aria-disabled="true">Gigantografías (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Microperforado (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Banners (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Vinil (pronto)</a>
+      </div>
+    </div>
+
+    <div class="vc-has-sub">
+      <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
+        Servicios <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="vc-submenu" role="menu" aria-label="Servicios">
+        <a href="#" role="menuitem" aria-disabled="true">Diseño gráfico (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Instalación (pronto)</a>
+        <a href="#" role="menuitem" aria-disabled="true">Mantenimiento (pronto)</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
 
     <!-- ===== Página de inicio (demo) ===== -->
     <section class="hero">

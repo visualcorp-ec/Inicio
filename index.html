@@ -59,6 +59,36 @@
     .vc-burger{ flex:0 0 auto }
     @media (max-width:1100px){ .vc-menu a[data-pending]::after{ display:none } }
     @media (max-width:900px){ .vc-menu{ -webkit-mask-image:none; mask-image:none } }
+      /* === Submenús y ajustes de tipografía/espaciado === */
+    .vc-menu, .vc-menu *{ box-sizing:border-box }
+    .vc-menu{ gap:clamp(4px,.8vw,8px) }
+    .vc-menu a{ font-size:clamp(.86rem,.76rem + .20vw,.95rem); padding:clamp(6px,.8vw,10px) clamp(8px,1vw,12px); }
+    .vc-subbtn[data-pending]::after{ content:"Pronto"; margin-left:8px; font-weight:800; font-size:.68rem; color:#111; background:var(--accent); border-radius:999px; padding:2px 8px }
+    .vc-has-sub{ position:relative; display:inline-flex; align-items:stretch }
+    .vc-subbtn{ background:transparent; border:1px solid transparent; border-radius:12px; font-weight:700; color:#e9ecf6; padding:clamp(6px,.8vw,10px) clamp(8px,1vw,12px); display:inline-flex; align-items:center; gap:8px; cursor:pointer }
+    .vc-subbtn i{ font-size:.8em; opacity:.8 }
+    .vc-subbtn:hover{ background:#151821; border-color:var(--sep) }
+    .vc-subbtn.is-active{ background: linear-gradient(180deg, rgba(242,201,76,.22), rgba(242,201,76,.08)); border-color: rgba(242,201,76,.35); color:#fff }
+    .vc-submenu{ position:absolute; top:calc(100% + 10px); left:0; background:#0f1116; border:1px solid var(--sep); border-radius:14px; padding:8px; display:none; grid-template-columns:1fr; gap:6px; box-shadow:0 12px 30px rgba(0,0,0,.45); min-width:220px }
+    .vc-has-sub:hover .vc-submenu{ display:grid }
+    .vc-submenu a{ padding:10px 12px; border-radius:10px; white-space:nowrap }
+    .vc-submenu a:hover{ background:#151821 }
+    @media (max-width:900px){
+      .vc-has-sub{ display:block }
+      .vc-subbtn{ width:100%; justify-content:space-between }
+      .vc-has-sub .vc-submenu{ position:static; display:none; margin-top:6px; background:#0f1116; border-style:dashed }
+      .vc-has-sub.open .vc-submenu{ display:grid }
+    }
+
+    /* === Sticky CTA (Contáctanos) === */
+    body{ padding-bottom: 80px }
+    @media (max-width:480px){ body{ padding-bottom:96px } }
+    .sticky-cta{ position:fixed; left:0; right:0; bottom: calc(16px + env(safe-area-inset-bottom)); z-index:60; display:flex; justify-content:center; pointer-events:none }
+    .social-links{ pointer-events:auto; display:flex; align-items:center; gap:14px; background: var(--panel); padding:10px 16px; border-radius:999px; border:1px solid var(--sep); box-shadow: 0 10px 24px rgba(0,0,0,.35) }
+    .social-links a{ font-size:1.35rem; color:var(--text); text-decoration:none; transition: color .2s var(--ease), transform .2s var(--ease) }
+    .social-links a:hover{ transform: translateY(-1px); color: var(--accent) }
+    .social-links a.contact-link{ font-size:.9rem; font-weight:700; color:#e9ecf6; background:linear-gradient(180deg, rgba(242,201,76,.22), rgba(242,201,76,.08)); border:1px solid rgba(242,201,76,.35); border-radius:999px; padding:8px 14px }
+    @media (max-width:480px){ .social-links{ gap:12px; padding:8px 12px } .social-links a{ font-size:1.2rem } .social-links a.contact-link{ font-size:.85rem; padding:8px 12px } }
   </style>
 </head>
 <body>
@@ -77,9 +107,40 @@
         <a id="nav-contacto" href="https://visualcorp-ec.github.io/contacto/" data-match="/contacto/">Contacto</a>
         <a id="nav-promos" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/" data-match="/PROMO-ANIVERSARIO18/">Promociones</a>
         <a id="nav-catalogo" href="/catalogo.html" data-pending data-match="/catalogo">Catálogo</a>
-        <a id="nav-productos" href="/productos.html" data-pending data-match="/productos">Productos</a>
-        <a id="nav-impresiones" href="/impresiones.html" data-pending data-match="/impresiones">Impresiones</a>
-        <a id="nav-servicios" href="/servicios.html" data-pending data-match="/servicios">Servicios</a>
+
+        <div class="vc-has-sub">
+          <button class="vc-subbtn" type="button" data-match="/productos" data-pending aria-expanded="false">Productos <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+          <div class="vc-submenu" role="menu">
+            <a href="/productos.html" data-pending role="menuitem">Todos</a>
+            <a href="/productos.html#letras-3d" data-pending role="menuitem">Letras 3D</a>
+            <a href="/productos.html#neon" data-pending role="menuitem">Neón</a>
+            <a href="/productos.html#rotulos" data-pending role="menuitem">Rótulos</a>
+            <a href="/productos.html#stands" data-pending role="menuitem">Stands</a>
+            <a href="/productos.html#stickers" data-pending role="menuitem">Stickers</a>
+          </div>
+        </div>
+
+        <div class="vc-has-sub">
+          <button class="vc-subbtn" type="button" data-match="/impresiones" data-pending aria-expanded="false">Impresiones <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+          <div class="vc-submenu" role="menu">
+            <a href="/impresiones.html" data-pending role="menuitem">Todas</a>
+            <a href="/impresiones.html#gigantografias" data-pending role="menuitem">Gigantografías</a>
+            <a href="/impresiones.html#microperforado" data-pending role="menuitem">Microperforado</a>
+            <a href="/impresiones.html#banners" data-pending role="menuitem">Banners</a>
+            <a href="/impresiones.html#vinil" data-pending role="menuitem">Vinil</a>
+          </div>
+        </div>
+
+        <div class="vc-has-sub">
+          <button class="vc-subbtn" type="button" data-match="/servicios" data-pending aria-expanded="false">Servicios <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+          <div class="vc-submenu" role="menu">
+            <a href="/servicios.html" data-pending role="menuitem">Todos</a>
+            <a href="/servicios.html#diseno" data-pending role="menuitem">Diseño gráfico</a>
+            <a href="/servicios.html#instalacion" data-pending role="menuitem">Instalación</a>
+            <a href="/servicios.html#mantenimiento" data-pending role="menuitem">Mantenimiento</a>
+          </div>
+        </div>
+
         <a id="nav-taller" href="/taller.html" data-pending data-match="/taller">Taller</a>
       </nav>
     </header>
@@ -138,6 +199,47 @@
     menu.addEventListener('pointermove', (e)=>{ if(!down) return; menu.scrollLeft = startLeft - (e.pageX - startX); });
     ['pointerup','pointercancel','pointerleave'].forEach(ev=> menu.addEventListener(ev, ()=> down=false));
   })();
-</script>
+    // Submenús: activar en móvil con click
+    (function submenus(){
+      const menu = document.getElementById('vc-menu');
+      const isMobile = () => window.matchMedia('(max-width: 900px)').matches || menu.classList.contains('open');
+      menu.querySelectorAll('.vc-subbtn').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          if(!isMobile()) return; // en desktop se abre por hover
+          e.preventDefault();
+          const box = btn.closest('.vc-has-sub');
+          const open = !box.classList.contains('open');
+          // cerrar otros
+          menu.querySelectorAll('.vc-has-sub.open').forEach(o=>{ if(o!==box) o.classList.remove('open'); });
+          box.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open);
+        });
+      });
+    })();
+
+    // Marcar activo también para submenús
+    (function setActiveForSubs(){
+      const here = location.href;
+      document.querySelectorAll('.vc-has-sub').forEach(box=>{
+        const btn = box.querySelector('.vc-subbtn');
+        const matchBtn = btn && btn.getAttribute('data-match') && new RegExp(btn.getAttribute('data-match')).test(here);
+        const matchChild = Array.from(box.querySelectorAll('.vc-submenu a')).some(link=>{
+          const m = link.getAttribute('data-match');
+          const url = new URL(link.href, location.origin);
+          const samePath = url.origin === location.origin && url.pathname === location.pathname;
+          return samePath || (m && new RegExp(m).test(here));
+        });
+        if(matchBtn || matchChild){ btn && btn.classList.add('is-active'); }
+      });
+    })();
+  </script>
+  <div class="sticky-cta" aria-label="Contáctanos">
+    <div class="social-links">
+      <a href="https://visualcorp-ec.github.io/contacto/" target="_blank" rel="noopener" class="contact-link">Contáctanos</a>
+      <a href="https://www.facebook.com/visualcorpec" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/visualcorpec" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@visualcorpmilagro" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+    </div>
+  </div>
 </body>
 </html>

@@ -249,5 +249,86 @@
       <a href="https://www.tiktok.com/@visualcorpmilagro" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
     </div>
   </div>
+  <script>
+(function(){
+  const burger  = document.querySelector('.vc-burger');
+  const menu    = document.getElementById('vc-menu');
+  const subBtns = document.querySelectorAll('.vc-subbtn');
+
+  // --- Abrir/cerrar menú móvil
+  burger?.addEventListener('click', ()=>{
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // --- Submenús (click en móvil / hover ya lo cubre tu CSS en desktop)
+  subBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const parent = btn.closest('.vc-has-sub');
+      const isOpen = parent.classList.toggle('open');
+      btn.classList.toggle('is-active', isOpen);
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+      // Cierra otros submenús en móvil
+      if (window.matchMedia('(max-width: 900px)').matches){
+        document.querySelectorAll('.vc-has-sub').forEach(n=>{
+          if(n!==parent){ n.classList.remove('open'); n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false'); n.querySelector('.vc-subbtn')?.classList.remove('is-active'); }
+        });
+      }
+    });
+  });
+
+  // --- Cerrar al hacer clic fuera
+  document.addEventListener('click', (e)=>{
+    if(!menu.contains(e.target) && !burger.contains(e.target)){
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.querySelectorAll('.vc-has-sub').forEach(n=>{
+        n.classList.remove('open');
+        n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
+        n.querySelector('.vc-subbtn')?.classList.remove('is-active');
+      });
+    }
+  });
+
+  // --- ESC para cerrar
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.querySelectorAll('.vc-has-sub').forEach(n=>{
+        n.classList.remove('open');
+        n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
+        n.querySelector('.vc-subbtn')?.classList.remove('is-active');
+      });
+    }
+  });
+
+  // --- Marcar activo según URL (tus 3 enlaces válidos)
+  const map = {
+    'nav-inicio':   'https://visualcorp-ec.github.io/Inicio/',
+    'nav-contacto': 'https://visualcorp-ec.github.io/contacto/',
+    'nav-promos':   'https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/'
+  };
+  const here = location.href;
+  Object.entries(map).forEach(([id,url])=>{
+    const a = document.getElementById(id);
+    if(a && here.startsWith(url)){
+      a.setAttribute('aria-current','page');
+      a.classList.add('active');
+    }
+  });
+
+  // --- Sombra al hacer scroll (tienes la clase .scrolled en tu CSS)
+  const header = document.querySelector('.vc-header');
+  const onScroll = ()=>{
+    if(window.scrollY > 4) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+})();
+</script>
+
 </body>
 </html>

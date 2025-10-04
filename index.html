@@ -1,91 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Visual Corp — Inicio</title>
-  <meta name="description" content="Sitio oficial de Visual Corp: diseño, impresión y publicidad en Milagro, Ecuador." />
+  <meta name="description" content="Sitio oficial de Visual Corp: diseño, impresión y publicidad en Milagro, Ecuador.">
+
   <link rel="icon" href="https://d1so26dimrz1o2.cloudfront.net/uploads/avatars/g32HrUdRExn93slL9Joo4T2nYbEXrN7Pog52QeH8.jpg">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    a{
-  text-decoration: none; /* <--- Esta es la línea clave que quita el subrayado */
-}
-    /* ====== Tokens ====== */
-    :root{ --bg:#0b0d10; --panel:#0f1116; --text:#f4f6fb; --muted:#9fa3ad; --sep:rgba(255,255,255,.08); --accent:#f2c94c; --accent-2:#d9a404; --ring:rgba(242,201,76,.28); --ease:cubic-bezier(.22,.84,.36,1); }
+    /* ===== Tokens / base ===== */
+    :root{
+      --bg:#0b0d10; --panel:#0f1116; --text:#f4f6fb; --muted:#9fa3ad;
+      --sep:rgba(255,255,255,.08);
+      --accent:#f2c94c; --accent-2:#d9a404;
+      --ring:rgba(242,201,76,.28);
+      --ease:cubic-bezier(.22,.84,.36,1);
+    }
+    *{box-sizing:border-box}
+    a{color:inherit; text-decoration:none}
     html,body{height:100%}
-    body{ margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial; color:var(--text); background: radial-gradient(1200px 800px at 10% -10%, #1a1c23 0%, #0b0d10 60%); }
-    a{ color:inherit; text-decoration:none }
-    .wrap{ max-width: 1200px; margin: auto; padding: 16px; }
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
+      color:var(--text);
+      background:radial-gradient(1200px 800px at 10% -10%, #1a1c23 0%, #0b0d10 60%);
+      padding-bottom:80px;
+    }
+    .wrap{max-width:1200px; margin:auto; padding:16px}
 
-    /* ====== NAVBAR (copiar tal cual a todas las páginas) ====== */
-    .vc-header{ position:sticky; top:0; z-index:50; background: rgba(7,8,11,.7); backdrop-filter: blur(10px); border:1px solid var(--sep); border-radius: 16px; padding: 10px 14px; display:flex; align-items:center; gap:14px; justify-content:space-between; }
+    /* ===== Header / navbar ===== */
+    .vc-header{ position:sticky; top:0; z-index:50; background: rgba(7,8,11,.7);
+      backdrop-filter:blur(10px); border:1px solid var(--sep); border-radius:16px;
+      padding:10px 14px; display:flex; align-items:center; gap:14px; justify-content:space-between;
+      transition: box-shadow .35s var(--ease), transform .35s var(--ease);
+    }
+    .vc-header.scrolled{ box-shadow:0 10px 30px rgba(0,0,0,.45); transform:translateY(-2px) scale(1.01); }
     .vc-brand{ display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px }
-    .vc-brand img{ width:46px; height:46px; border-radius:12px; object-fit:cover; border:2px solid var(--accent); box-shadow: 0 0 0 5px rgba(242,201,76,.12) }
+    .vc-brand img{ width:46px; height:46px; border-radius:12px; object-fit:cover;
+      border:2px solid var(--accent); box-shadow:0 0 0 5px rgba(242,201,76,.12) }
 
-    .vc-menu{ display:flex; gap:8px; align-items:center; }
-    .vc-menu a{ padding:10px 12px; border-radius:12px; font-weight:700; color:#e9ecf6; border:1px solid transparent; }
+    .vc-menu{ flex:1 1 auto; min-width:0; display:flex; gap:clamp(4px,.8vw,8px); align-items:center;
+      overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;
+      -webkit-mask-image:linear-gradient(90deg, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+              mask-image:linear-gradient(90deg, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+    }
+    .vc-menu::-webkit-scrollbar{ display:none }
+    .vc-menu a{ padding:clamp(6px,.8vw,10px) clamp(8px,1vw,12px); border-radius:12px; font-weight:700; color:#e9ecf6; border:1px solid transparent; white-space:nowrap; font-size:clamp(.86rem,.76rem + .20vw,.95rem) }
     .vc-menu a:hover{ background:#151821; border-color:var(--sep) }
-    .vc-menu a[aria-current="page"], .vc-menu a.active{ background: linear-gradient(180deg, rgba(242,201,76,.22), rgba(242,201,76,.08)); border-color: rgba(242,201,76,.35); color:#fff }
+    .vc-menu a[aria-current="page"], .vc-menu a.active{ background:linear-gradient(180deg, rgba(242,201,76,.22), rgba(242,201,76,.08)); border-color:rgba(242,201,76,.35); color:#fff }
     .vc-menu a[data-pending]::after{ content:"Pronto"; margin-left:8px; font-weight:800; font-size:.72rem; color:#111; background:var(--accent); border-radius:999px; padding:2px 8px }
 
-    /* Burger */
-    .vc-burger{ display:none; border:1px solid var(--sep); background:#12141a; color:#fff; border-radius:10px; padding:10px 12px; }
+    .vc-burger{ display:none; border:1px solid var(--sep); background:#12141a; color:#fff; border-radius:10px; padding:10px 12px }
     .vc-burger i{ font-size:1.1rem }
 
-    @media (max-width: 900px){
-      .vc-burger{ display:inline-flex }
-      .vc-menu{ position:fixed; right:16px; left:16px; top:72px; display:grid; gap:10px; padding:12px; background:#0f1116; border:1px solid var(--sep); border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,.45); transform:translateY(-8px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .25s var(--ease), transform .25s var(--ease), visibility .25s var(--ease) }
-      .vc-menu.open{ transform:none; opacity:1; visibility:visible; pointer-events:auto }
-    }
-
-    /* ====== Sección hero demo (puedes reemplazarla) ====== */
-    .hero{ margin:18px 0; padding:28px; border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid var(--sep); text-align:center }
-    .hero h1{ margin:0 0 8px; font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight:800 }
-    .hero p{ margin:0; color:var(--muted) }
-
-    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin: 20px 0 36px }
-    .card{ background:#111318; border:1px solid var(--sep); border-radius:16px; padding:16px; }
-    .card h3{ margin:0 0 6px }
-    .card p{ margin:0; color:var(--muted) }
-    .btn{ display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#111; font-weight:800; border-radius:12px; padding:10px 14px; border:1px solid var(--accent-2) }
-    .btn.ghost{ background:transparent; color:var(--accent); border-color:var(--accent) }
-    .foot{ color:var(--muted); text-align:center; margin: 16px 0 6px }
-      /* --- Responsive menu upgrades --- */
-    .vc-header{ overflow:hidden; display:flex; align-items:center; }
-    .vc-brand{ flex:0 0 auto }
-    .vc-menu{ flex:1 1 auto; min-width:0; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; gap:clamp(4px,0.9vw,10px); -webkit-mask-image:linear-gradient(90deg, transparent 0, black 24px, black calc(100% - 24px), transparent 100%); mask-image:linear-gradient(90deg, transparent 0, black 24px, black calc(100% - 24px), transparent 100%)}
-    .vc-menu::-webkit-scrollbar{ display:none }
-    .vc-menu a{ white-space:nowrap; padding:clamp(8px,1vw,10px) clamp(8px,1.4vw,12px); font-size:clamp(.92rem,.84rem + .18vw,1rem) }
-    .vc-burger{ flex:0 0 auto }
-    @media (max-width:1100px){ .vc-menu a[data-pending]::after{ display:none } }
-    @media (max-width:900px){ .vc-menu{ -webkit-mask-image:none; mask-image:none } }
-      /* === Submenús y ajustes de tipografía/espaciado === */
-    .vc-menu, .vc-menu *{ box-sizing:border-box }
-    .vc-menu{ gap:clamp(4px,.8vw,8px) }
-    .vc-menu a{ font-size:clamp(.86rem,.76rem + .20vw,.95rem); padding:clamp(6px,.8vw,10px) clamp(8px,1vw,12px); }
-    .vc-subbtn[data-pending]::after{ content:"Pronto"; margin-left:8px; font-weight:800; font-size:.68rem; color:#111; background:var(--accent); border-radius:999px; padding:2px 8px }
+    /* Submenús */
     .vc-has-sub{ position:relative; display:inline-flex; align-items:stretch }
-    .vc-subbtn{ background:transparent; border:1px solid transparent; border-radius:12px; font-weight:700; color:#e9ecf6; padding:clamp(6px,.8vw,10px) clamp(8px,1vw,12px); display:inline-flex; align-items:center; gap:8px; cursor:pointer }
-    .vc-subbtn i{ font-size:.8em; opacity:.8 }
+    .vc-subbtn{ background:transparent; border:1px solid transparent; border-radius:12px; font-weight:700; color:#e9ecf6; padding:clamp(6px,.8vw,10px) clamp(8px,1vw,12px); display:inline-flex; align-items:center; gap:8px; cursor:pointer; white-space:nowrap; font-size:clamp(.86rem,.76rem + .20vw,.95rem) }
     .vc-subbtn:hover{ background:#151821; border-color:var(--sep) }
-    .vc-subbtn.is-active{ background: linear-gradient(180deg, rgba(242,201,76,.22), rgba(242,201,76,.08)); border-color: rgba(242,201,76,.35); color:#fff }
+    .vc-subbtn i{ font-size:.8em; opacity:.8 }
+    .vc-subbtn.is-active{ background:linear-gradient(180deg, rgba(242,201,76,.22), rgba(242,201,76,.08)); border-color:rgba(242,201,76,.35); color:#fff }
+    .vc-subbtn[data-pending]::after{ content:"Pronto"; margin-left:8px; font-weight:800; font-size:.68rem; color:#111; background:var(--accent); border-radius:999px; padding:2px 8px }
     .vc-submenu{ position:absolute; top:calc(100% + 10px); left:0; background:#0f1116; border:1px solid var(--sep); border-radius:14px; padding:8px; display:none; grid-template-columns:1fr; gap:6px; box-shadow:0 12px 30px rgba(0,0,0,.45); min-width:220px }
     .vc-has-sub:hover .vc-submenu{ display:grid }
     .vc-submenu a{ padding:10px 12px; border-radius:10px; white-space:nowrap }
     .vc-submenu a:hover{ background:#151821 }
-    @media (max-width:900px){
+
+    /* Menú móvil */
+    @media (max-width: 900px){
+      .vc-burger{ display:inline-flex }
+      .vc-menu{ position:fixed; right:16px; left:16px; top:72px; display:grid; gap:10px; padding:12px; background:#0f1116; border:1px solid var(--sep); border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,.45); transform:translateY(-8px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .25s var(--ease), transform .25s var(--ease), visibility .25s var(--ease); -webkit-mask-image:none; mask-image:none }
+      .vc-menu.open{ transform:none; opacity:1; visibility:visible; pointer-events:auto }
       .vc-has-sub{ display:block }
       .vc-subbtn{ width:100%; justify-content:space-between }
       .vc-has-sub .vc-submenu{ position:static; display:none; margin-top:6px; background:#0f1116; border-style:dashed }
       .vc-has-sub.open .vc-submenu{ display:grid }
+      .vc-menu a[data-pending]::after, .vc-subbtn[data-pending]::after{ display:none }
     }
 
-    /* === Sticky CTA (Contáctanos) === */
-    body{ padding-bottom: 80px }
-    @media (max-width:480px){ body{ padding-bottom:96px } }
+    /* ===== Hero / demo ===== */
+    .hero{ margin:18px 0; padding:28px; border-radius:24px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid var(--sep) }
+    .hero h1{ margin:12px 0 8px; font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:800; line-height:1.1 }
+    .hero p{ margin:0; color:var(--muted) }
+    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px; font-weight:700; background:#1a1d24; color:#fff; border:1px solid var(--sep) }
+    .btn.ghost{ background:transparent; color:var(--accent); border-color:var(--accent) }
+
+    /* ===== Sticky CTA ===== */
     .sticky-cta{ position:fixed; left:0; right:0; bottom: calc(16px + env(safe-area-inset-bottom)); z-index:60; display:flex; justify-content:center; pointer-events:none }
     .social-links{ pointer-events:auto; display:flex; align-items:center; gap:14px; background: var(--panel); padding:10px 16px; border-radius:999px; border:1px solid var(--sep); box-shadow: 0 10px 24px rgba(0,0,0,.35) }
     .social-links a{ font-size:1.35rem; color:var(--text); text-decoration:none; transition: color .2s var(--ease), transform .2s var(--ease) }
@@ -96,151 +97,92 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- ===== NAVBAR reutilizable: copia desde <header> hasta </header> a todas tus páginas ===== -->
+    <!-- ===== NAVBAR ===== -->
     <header class="vc-header" role="banner">
-  <a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/" aria-label="Visual Corp - Inicio">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp">
-    <span>Visual Corp</span>
-  </a>
+      <a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/" aria-label="Visual Corp - Inicio">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp">
+        <span>Visual Corp</span>
+      </a>
 
-  <button class="vc-burger" aria-controls="vc-menu" aria-expanded="false" title="Abrir menú">
-    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-  </button>
-
-  <nav id="vc-menu" class="vc-menu" aria-label="Menú principal">
-    <a id="nav-inicio" href="https://visualcorp-ec.github.io/Inicio/">Inicio</a>
-    <a id="nav-contacto" href="https://visualcorp-ec.github.io/contacto/">Contacto</a>
-    <a id="nav-promos" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Promociones</a>
-
-    <!-- Bloques con submenú (aún “pronto”) -->
-    <div class="vc-has-sub">
-      <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
-        Productos <i class="fa-solid fa-chevron-down"></i>
+      <button class="vc-burger" aria-controls="vc-menu" aria-expanded="false" title="Abrir menú">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
       </button>
-      <div class="vc-submenu" role="menu" aria-label="Productos">
-        <a href="#" role="menuitem" aria-disabled="true">Todos (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Letras 3D (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Neón (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Rótulos (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Stands (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Stickers (pronto)</a>
-      </div>
-    </div>
 
-    <div class="vc-has-sub">
-      <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
-        Impresiones <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="vc-submenu" role="menu" aria-label="Impresiones">
-        <a href="#" role="menuitem" aria-disabled="true">Gigantografías (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Microperforado (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Banners (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Vinil (pronto)</a>
-      </div>
-    </div>
+      <nav id="vc-menu" class="vc-menu" aria-label="Menú principal">
+        <a id="nav-inicio"   href="https://visualcorp-ec.github.io/Inicio/" aria-current="page" class="active">Inicio</a>
+        <a id="nav-contacto" href="https://visualcorp-ec.github.io/contacto/">Contacto</a>
+        <a id="nav-promos"   href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Promociones</a>
 
-    <div class="vc-has-sub">
-      <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
-        Servicios <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="vc-submenu" role="menu" aria-label="Servicios">
-        <a href="#" role="menuitem" aria-disabled="true">Diseño gráfico (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Instalación (pronto)</a>
-        <a href="#" role="menuitem" aria-disabled="true">Mantenimiento (pronto)</a>
-      </div>
-    </div>
-  </nav>
-</header>
+        <div class="vc-has-sub">
+          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">Productos <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="vc-submenu" role="menu">
+            <a href="#" role="menuitem" aria-disabled="true">Todos (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Letras 3D (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Neón (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Rótulos (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Stands (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Stickers (pronto)</a>
+          </div>
+        </div>
 
+        <div class="vc-has-sub">
+          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">Impresiones <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="vc-submenu" role="menu">
+            <a href="#" role="menuitem" aria-disabled="true">Gigantografías (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Microperforado (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Banners (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Vinil (pronto)</a>
+          </div>
+        </div>
 
-    <!-- ===== Página de inicio (demo) ===== -->
+        <div class="vc-has-sub">
+          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">Servicios <i class="fa-solid fa-chevron-down"></i></button>
+          <div class="vc-submenu" role="menu">
+            <a href="#" role="menuitem" aria-disabled="true">Diseño gráfico (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Instalación (pronto)</a>
+            <a href="#" role="menuitem" aria-disabled="true">Mantenimiento (pronto)</a>
+          </div>
+        </div>
+
+        <a id="nav-taller" href="#" data-pending="" data-match="/taller">Taller</a>
+      </nav>
+    </header>
+
+    <!-- ===== Hero de inicio (demo) ===== -->
     <section class="hero">
       <h1>Diseño e impresión que hacen ruido 🔊</h1>
       <p>18 años creando letreros, neones, gigantografías y más. Conoce nuestras promos y contáctanos.</p>
-      <p style="margin-top:12px"><a class="btn" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Ver Promociones</a> <a class="btn ghost" href="https://visualcorp-ec.github.io/contacto/">Contacto</a></p>
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Ver Promociones</a>
+        <a class="btn ghost" href="https://visualcorp-ec.github.io/contacto/">Contacto</a>
+      </div>
     </section>
 
-    <section class="grid">
-      <article class="card"><h3>Catálogo</h3><p>Pronto. Consulta productos destacados en Promociones.</p></article>
-      <article class="card"><h3>Productos</h3><p>Pronto. Letras 3D, neón, rótulos, stands, stickers…</p></article>
-      <article class="card"><h3>Impresiones</h3><p>Pronto. Gigantografías, microperforado, banners, vinil.</p></article>
-      <article class="card"><h3>Servicios</h3><p>Pronto. Diseño gráfico, instalación, mantenimiento.</p></article>
-      <article class="card"><h3>Taller</h3><p>Pronto. Detrás de cámaras, materiales y procesos.</p></article>
+    <!-- Demo de tarjetas -->
+    <section class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin:20px 0 36px">
+      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+        <h3 style="margin:0 0 6px">Catálogo</h3><p style="margin:0;color:var(--muted)">Pronto. Consulta productos destacados en Promociones.</p>
+      </article>
+      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+        <h3 style="margin:0 0 6px">Productos</h3><p style="margin:0;color:var(--muted)">Pronto. Letras 3D, neón, rótulos, stands, stickers…</p>
+      </article>
+      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+        <h3 style="margin:0 0 6px">Impresiones</h3><p style="margin:0;color:var(--muted)">Pronto. Gigantografías, microperforado, banners, vinil.</p>
+      </article>
+      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+        <h3 style="margin:0 0 6px">Servicios</h3><p style="margin:0;color:var(--muted)">Pronto. Diseño gráfico, instalación, mantenimiento.</p>
+      </article>
+      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+        <h3 style="margin:0 0 6px">Taller</h3><p style="margin:0;color:var(--muted)">Pronto. Detrás de cámaras, materiales y procesos.</p>
+      </article>
     </section>
 
-    <div class="foot">© <span id="year"></span> Visual Corp · Milagro, Ecuador</div>
+    <div class="foot" style="color:var(--muted); text-align:center; margin:16px 0 6px">
+      © <span id="year">2025</span> Visual Corp · Milagro, Ecuador
+    </div>
   </div>
 
-  <script>
-    // Año dinámico
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Burger toggle
-    const burger = document.querySelector('.vc-burger');
-    const menu = document.getElementById('vc-menu');
-    function toggleMenu(){ const open = menu.classList.toggle('open'); burger.setAttribute('aria-expanded', open); }
-    burger.addEventListener('click', toggleMenu);
-    menu.addEventListener('click', (e)=>{ if(e.target.tagName==='A' && menu.classList.contains('open')) toggleMenu(); });
-
-    // Marca el enlace activo según URL (soporta subrutas y enlaces externos definidos con data-match)
-    (function setActive(){
-      const here = location.href;
-      document.querySelectorAll('.vc-menu a').forEach(a=>{
-        const m = a.getAttribute('data-match');
-        const url = new URL(a.href, location.origin);
-        const samePath = url.origin === location.origin && url.pathname === location.pathname;
-        if(samePath || (m && new RegExp(m).test(here))){ a.setAttribute('aria-current','page'); }
-      });
-    })();
-    // --- Responsive menu upgrades: horizontal scroll UX ---
-  (function enhanceMenuScroll(){
-    const menu = document.getElementById('vc-menu');
-    if(!menu) return;
-    // Scroll con rueda vertical
-    menu.addEventListener('wheel', (e)=>{
-      const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY);
-      if(dy > dx){ menu.scrollLeft += e.deltaY; e.preventDefault(); }
-    }, {passive:false});
-    // Drag to scroll
-    let down=false, startX=0, startLeft=0;
-    menu.addEventListener('pointerdown', (e)=>{ down=true; startX=e.pageX; startLeft=menu.scrollLeft; menu.setPointerCapture(e.pointerId); });
-    menu.addEventListener('pointermove', (e)=>{ if(!down) return; menu.scrollLeft = startLeft - (e.pageX - startX); });
-    ['pointerup','pointercancel','pointerleave'].forEach(ev=> menu.addEventListener(ev, ()=> down=false));
-  })();
-    // Submenús: activar en móvil con click
-    (function submenus(){
-      const menu = document.getElementById('vc-menu');
-      const isMobile = () => window.matchMedia('(max-width: 900px)').matches || menu.classList.contains('open');
-      menu.querySelectorAll('.vc-subbtn').forEach(btn=>{
-        btn.addEventListener('click', (e)=>{
-          if(!isMobile()) return; // en desktop se abre por hover
-          e.preventDefault();
-          const box = btn.closest('.vc-has-sub');
-          const open = !box.classList.contains('open');
-          // cerrar otros
-          menu.querySelectorAll('.vc-has-sub.open').forEach(o=>{ if(o!==box) o.classList.remove('open'); });
-          box.classList.toggle('open', open);
-          btn.setAttribute('aria-expanded', open);
-        });
-      });
-    })();
-
-    // Marcar activo también para submenús
-    (function setActiveForSubs(){
-      const here = location.href;
-      document.querySelectorAll('.vc-has-sub').forEach(box=>{
-        const btn = box.querySelector('.vc-subbtn');
-        const matchBtn = btn && btn.getAttribute('data-match') && new RegExp(btn.getAttribute('data-match')).test(here);
-        const matchChild = Array.from(box.querySelectorAll('.vc-submenu a')).some(link=>{
-          const m = link.getAttribute('data-match');
-          const url = new URL(link.href, location.origin);
-          const samePath = url.origin === location.origin && url.pathname === location.pathname;
-          return samePath || (m && new RegExp(m).test(here));
-        });
-        if(matchBtn || matchChild){ btn && btn.classList.add('is-active'); }
-      });
-    })();
-  </script>
+  <!-- Sticky CTA -->
   <div class="sticky-cta" aria-label="Contáctanos">
     <div class="social-links">
       <a href="https://visualcorp-ec.github.io/contacto/" target="_blank" rel="noopener" class="contact-link">Contáctanos</a>
@@ -249,86 +191,104 @@
       <a href="https://www.tiktok.com/@visualcorpmilagro" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
     </div>
   </div>
+
   <script>
-(function(){
-  const burger  = document.querySelector('.vc-burger');
-  const menu    = document.getElementById('vc-menu');
-  const subBtns = document.querySelectorAll('.vc-subbtn');
+  (()=>{
 
-  // --- Abrir/cerrar menú móvil
-  burger?.addEventListener('click', ()=>{
-    const open = menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
+    // Año dinámico
+    const year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
 
-  // --- Submenús (click en móvil / hover ya lo cubre tu CSS en desktop)
-  subBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const parent = btn.closest('.vc-has-sub');
-      const isOpen = parent.classList.toggle('open');
-      btn.classList.toggle('is-active', isOpen);
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    const header = document.querySelector('.vc-header');
+    const burger = document.querySelector('.vc-burger');
+    const menu   = document.getElementById('vc-menu');
+    const subBtns= document.querySelectorAll('.vc-subbtn');
 
-      // Cierra otros submenús en móvil
-      if (window.matchMedia('(max-width: 900px)').matches){
-        document.querySelectorAll('.vc-has-sub').forEach(n=>{
-          if(n!==parent){ n.classList.remove('open'); n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false'); n.querySelector('.vc-subbtn')?.classList.remove('is-active'); }
-        });
+    const onScroll = () => header?.classList.toggle('scrolled', (window.scrollY||0) > 8);
+    onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+    // Abrir/cerrar menú móvil (burger)
+    burger?.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // ✅ Cerrar menú solo DESPUÉS de hacer click en un enlace (sin impedir la navegación)
+    menu?.addEventListener('click', (ev)=>{
+      const a = ev.target.closest('a[href]');
+      if(!a) return;
+      if(menu.classList.contains('open')){
+        setTimeout(closeAll, 0);   // deja que el navegador cambie de página
       }
     });
-  });
 
-  // --- Cerrar al hacer clic fuera
-  document.addEventListener('click', (e)=>{
-    if(!menu.contains(e.target) && !burger.contains(e.target)){
+    // Submenús en móvil por click (en desktop siguen por hover via CSS)
+    subBtns.forEach(btn=>{
+      btn.addEventListener('click', (ev)=>{
+        const isMobile = window.matchMedia('(max-width: 900px)').matches || menu.classList.contains('open');
+        if(!isMobile) return; // desktop: hover se encarga
+        ev.preventDefault();
+        const box  = btn.closest('.vc-has-sub');
+        const open = !box.classList.contains('open');
+        // cerrar otros submenús
+        document.querySelectorAll('.vc-has-sub.open').forEach(o=>{
+          if(o!==box){
+            o.classList.remove('open');
+            o.querySelector('.vc-subbtn')?.classList.remove('is-active');
+            o.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
+          }
+        });
+        box.classList.toggle('open', open);
+        btn.classList.toggle('is-active', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+
+    // Cerrar al hacer click fuera y con ESC
+    document.addEventListener('click', (e)=>{
+      if(!menu.contains(e.target) && !burger.contains(e.target)) closeAll();
+    });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeAll(); });
+
+    function closeAll(){
       menu.classList.remove('open');
       burger.setAttribute('aria-expanded','false');
-      document.querySelectorAll('.vc-has-sub').forEach(n=>{
+      document.querySelectorAll('.vc-has-sub.open').forEach(n=>{
         n.classList.remove('open');
-        n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
         n.querySelector('.vc-subbtn')?.classList.remove('is-active');
+        n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
       });
     }
-  });
 
-  // --- ESC para cerrar
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape'){
-      menu.classList.remove('open');
-      burger.setAttribute('aria-expanded','false');
-      document.querySelectorAll('.vc-has-sub').forEach(n=>{
-        n.classList.remove('open');
-        n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
-        n.querySelector('.vc-subbtn')?.classList.remove('is-active');
-      });
-    }
-  });
+    // Marcar activo según URL (tres rutas válidas)
+    const map = {
+      'nav-inicio':   'https://visualcorp-ec.github.io/Inicio/',
+      'nav-contacto': 'https://visualcorp-ec.github.io/contacto/',
+      'nav-promos':   'https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/'
+    };
+    const here = location.href;
+    Object.entries(map).forEach(([id,url])=>{
+      const a = document.getElementById(id);
+      if(a && here.startsWith(url)){
+        a.setAttribute('aria-current','page');
+        a.classList.add('active');
+      }
+    });
 
-  // --- Marcar activo según URL (tus 3 enlaces válidos)
-  const map = {
-    'nav-inicio':   'https://visualcorp-ec.github.io/Inicio/',
-    'nav-contacto': 'https://visualcorp-ec.github.io/contacto/',
-    'nav-promos':   'https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/'
-  };
-  const here = location.href;
-  Object.entries(map).forEach(([id,url])=>{
-    const a = document.getElementById(id);
-    if(a && here.startsWith(url)){
-      a.setAttribute('aria-current','page');
-      a.classList.add('active');
-    }
-  });
+    // UX: scroll horizontal con rueda y drag
+    (function enhanceMenuScroll(){
+      if(!menu) return;
+      menu.addEventListener('wheel', (e)=>{
+        const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY);
+        if(dy > dx){ menu.scrollLeft += e.deltaY; e.preventDefault(); }
+      }, {passive:false});
+      let down=false, startX=0, startLeft=0;
+      menu.addEventListener('pointerdown', (e)=>{ down=true; startX=e.pageX; startLeft=menu.scrollLeft; menu.setPointerCapture(e.pointerId); });
+      menu.addEventListener('pointermove', (e)=>{ if(!down) return; menu.scrollLeft = startLeft - (e.pageX - startX); });
+      ['pointerup','pointercancel','pointerleave'].forEach(ev=> menu.addEventListener(ev, ()=> down=false));
+    })();
 
-  // --- Sombra al hacer scroll (tienes la clase .scrolled en tu CSS)
-  const header = document.querySelector('.vc-header');
-  const onScroll = ()=>{
-    if(window.scrollY > 4) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll);
-})();
-</script>
-
+  })();
+  </script>
 </body>
 </html>

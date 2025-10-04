@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visual Corp — Inicio</title>
+  <meta name="description" content="Sitio oficial de Visual Corp: diseño, impresión y publicidad en Milagro, Ecuador." />
+  <link rel="icon" href="https://d1so26dimrz1o2.cloudfront.net/uploads/avatars/g32HrUdRExn93slL9Joo4T2nYbEXrN7Pog52QeH8.jpg">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ====== Tokens ====== */
+    :root{ --bg:#0b0d10; --panel:#0f1116; --text:#f4f6fb; --muted:#9fa3ad; --sep:rgba(255,255,255,.08); --accent:#f2c94c; --accent-2:#d9a404; --ring:rgba(242,201,76,.28); --ease:cubic-bezier(.22,.84,.36,1); }
+    html,body{height:100%}
+    body{ margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial; color:var(--text); background: radial-gradient(1200px 800px at 10% -10%, #1a1c23 0%, #0b0d10 60%); }
+    a{ color:inherit; text-decoration:none }
+    .wrap{ max-width: 1200px; margin: auto; padding: 16px; }
+
+    /* ====== NAVBAR (copiar tal cual a todas las páginas) ====== */
+    .vc-header{ position:sticky; top:0; z-index:50; background: rgba(7,8,11,.7); backdrop-filter: blur(10px); border:1px solid var(--sep); border-radius: 16px; padding: 10px 14px; display:flex; align-items:center; gap:14px; justify-content:space-between; }
+    .vc-brand{ display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px }
+    .vc-brand img{ width:46px; height:46px; border-radius:12px; object-fit:cover; border:2px solid var(--accent); box-shadow: 0 0 0 5px rgba(242,201,76,.12) }
+
+    .vc-menu{ display:flex; gap:8px; align-items:center; }
+    .vc-menu a{ padding:10px 12px; border-radius:12px; font-weight:700; color:#e9ecf6; border:1px solid transparent; }
+    .vc-menu a:hover{ background:#151821; border-color:var(--sep) }
+    .vc-menu a[aria-current="page"], .vc-menu a.active{ background: linear-gradient(180deg, rgba(242,201,76,.22), rgba(242,201,76,.08)); border-color: rgba(242,201,76,.35); color:#fff }
+    .vc-menu a[data-pending]::after{ content:"Pronto"; margin-left:8px; font-weight:800; font-size:.72rem; color:#111; background:var(--accent); border-radius:999px; padding:2px 8px }
+
+    /* Burger */
+    .vc-burger{ display:none; border:1px solid var(--sep); background:#12141a; color:#fff; border-radius:10px; padding:10px 12px; }
+    .vc-burger i{ font-size:1.1rem }
+
+    @media (max-width: 900px){
+      .vc-burger{ display:inline-flex }
+      .vc-menu{ position:fixed; right:16px; left:16px; top:72px; display:grid; gap:10px; padding:12px; background:#0f1116; border:1px solid var(--sep); border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,.45); transform:translateY(-8px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .25s var(--ease), transform .25s var(--ease), visibility .25s var(--ease) }
+      .vc-menu.open{ transform:none; opacity:1; visibility:visible; pointer-events:auto }
+    }
+
+    /* ====== Sección hero demo (puedes reemplazarla) ====== */
+    .hero{ margin:18px 0; padding:28px; border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid var(--sep); text-align:center }
+    .hero h1{ margin:0 0 8px; font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight:800 }
+    .hero p{ margin:0; color:var(--muted) }
+
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin: 20px 0 36px }
+    .card{ background:#111318; border:1px solid var(--sep); border-radius:16px; padding:16px; }
+    .card h3{ margin:0 0 6px }
+    .card p{ margin:0; color:var(--muted) }
+    .btn{ display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#111; font-weight:800; border-radius:12px; padding:10px 14px; border:1px solid var(--accent-2) }
+    .btn.ghost{ background:transparent; color:var(--accent); border-color:var(--accent) }
+    .foot{ color:var(--muted); text-align:center; margin: 16px 0 6px }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- ===== NAVBAR reutilizable: copia desde <header> hasta </header> a todas tus páginas ===== -->
+    <header class="vc-header">
+      <a class="vc-brand" href="/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp"/>
+        <span>Visual Corp</span>
+      </a>
+
+      <button class="vc-burger" aria-controls="vc-menu" aria-expanded="false" title="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+
+      <nav id="vc-menu" class="vc-menu" aria-label="Menú principal">
+        <a id="nav-inicio" href="/">Inicio</a>
+        <a id="nav-contacto" href="https://visualcorp-ec.github.io/contacto/" data-match="/contacto/">Contacto</a>
+        <a id="nav-promos" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/" data-match="/PROMO-ANIVERSARIO18/">Promociones</a>
+        <a id="nav-catalogo" href="/catalogo.html" data-pending data-match="/catalogo">Catálogo</a>
+        <a id="nav-productos" href="/productos.html" data-pending data-match="/productos">Productos</a>
+        <a id="nav-impresiones" href="/impresiones.html" data-pending data-match="/impresiones">Impresiones</a>
+        <a id="nav-servicios" href="/servicios.html" data-pending data-match="/servicios">Servicios</a>
+        <a id="nav-taller" href="/taller.html" data-pending data-match="/taller">Taller</a>
+      </nav>
+    </header>
+
+    <!-- ===== Página de inicio (demo) ===== -->
+    <section class="hero">
+      <h1>Diseño e impresión que hacen ruido 🔊</h1>
+      <p>18 años creando letreros, neones, gigantografías y más. Conoce nuestras promos y contáctanos.</p>
+      <p style="margin-top:12px"><a class="btn" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Ver Promociones</a> <a class="btn ghost" href="https://visualcorp-ec.github.io/contacto/">Contacto</a></p>
+    </section>
+
+    <section class="grid">
+      <article class="card"><h3>Catálogo</h3><p>Pronto. Consulta productos destacados en Promociones.</p></article>
+      <article class="card"><h3>Productos</h3><p>Pronto. Letras 3D, neón, rótulos, stands, stickers…</p></article>
+      <article class="card"><h3>Impresiones</h3><p>Pronto. Gigantografías, microperforado, banners, vinil.</p></article>
+      <article class="card"><h3>Servicios</h3><p>Pronto. Diseño gráfico, instalación, mantenimiento.</p></article>
+      <article class="card"><h3>Taller</h3><p>Pronto. Detrás de cámaras, materiales y procesos.</p></article>
+    </section>
+
+    <div class="foot">© <span id="year"></span> Visual Corp · Milagro, Ecuador</div>
+  </div>
+
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Burger toggle
+    const burger = document.querySelector('.vc-burger');
+    const menu = document.getElementById('vc-menu');
+    function toggleMenu(){ const open = menu.classList.toggle('open'); burger.setAttribute('aria-expanded', open); }
+    burger.addEventListener('click', toggleMenu);
+    menu.addEventListener('click', (e)=>{ if(e.target.tagName==='A' && menu.classList.contains('open')) toggleMenu(); });
+
+    // Marca el enlace activo según URL (soporta subrutas y enlaces externos definidos con data-match)
+    (function setActive(){
+      const here = location.href;
+      document.querySelectorAll('.vc-menu a').forEach(a=>{
+        const m = a.getAttribute('data-match');
+        const url = new URL(a.href, location.origin);
+        const samePath = url.origin === location.origin && url.pathname === location.pathname;
+        if(samePath || (m && new RegExp(m).test(here))){ a.setAttribute('aria-current','page'); }
+      });
+    })();
+  </script>
+</body>
+</html>

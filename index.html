@@ -103,13 +103,13 @@
   <div class="wrap">
     <!-- ===== NAVBAR ===== -->
     <header class="vc-header" role="banner">
-      <a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/" aria-label="Visual Corp - Inicio">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp" width="46" height="46">
+      <a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp">
         <span>Visual Corp</span>
       </a>
     
-      <button class="vc-burger" type="button" aria-controls="vc-menu" aria-expanded="false" aria-label="Abrir menú" title="Abrir menú">
-        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      <button class="vc-burger" aria-controls="vc-menu" aria-expanded="false" title="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
       </button>
     
       <nav id="vc-menu" class="vc-menu" aria-label="Menú principal">
@@ -120,7 +120,7 @@
     
         <!-- Bloques con submenú (pronto) -->
         <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
+          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">
             Productos <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div class="vc-submenu" role="menu" aria-label="Productos">
@@ -134,7 +134,7 @@
         </div>
     
         <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
+          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">
             Impresiones <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div class="vc-submenu" role="menu" aria-label="Impresiones">
@@ -146,7 +146,7 @@
         </div>
     
         <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
+          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">
             Servicios <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div class="vc-submenu" role="menu" aria-label="Servicios">
@@ -157,6 +157,7 @@
         </div>
       </nav>
     </header>
+
 
     <main>
       <!-- ===== Hero de inicio (demo) ===== -->
@@ -204,61 +205,39 @@
     </div>
   </div>
 
-  <script>
-(() => {
-  const closestLink = (t) => (t instanceof Element) ? t.closest('a[href]') : null;
+<script>
+(function(){
+  const burger  = document.querySelector('.vc-burger');
+  const menu    = document.getElementById('vc-menu');
+  const subBtns = document.querySelectorAll('.vc-subbtn');
 
-  const header = document.querySelector('.vc-header');
-  const burger = document.querySelector('.vc-burger');
-  const menu   = document.getElementById('vc-menu');
-  const subBtns= document.querySelectorAll('.vc-subbtn');
-
-  // Sombra al hacer scroll
-  const onScroll = () => header?.classList.toggle('scrolled', (window.scrollY || 0) > 8);
-  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
-
-  // Abrir/cerrar menú móvil (burger)
-  burger?.addEventListener('click', () => {
+  // --- Abrir/cerrar menú móvil
+  burger?.addEventListener('click', ()=>{
     const open = menu.classList.toggle('open');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-    burger.setAttribute('title',      open ? 'Cerrar menú' : 'Abrir menú');
   });
 
-  // ✅ Cerrar el menú DESPUÉS de hacer clic en un enlace (no bloquea la navegación)
-  menu?.addEventListener('click', (ev) => {
-    const link = closestLink(ev.target);
-    if (!link) return;
-    if (menu.classList.contains('open')) setTimeout(closeAll, 0);
+  // --- Cerrar al tocar un enlace dentro del menú
+  menu.addEventListener('click', (e)=>{
+    const tag = (e.target as HTMLElement).closest('a');
+    if(tag && menu.classList.contains('open')){
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    }
   });
 
-  // Plan B: si algún script hizo preventDefault al <a>, forzar navegación
-  document.querySelectorAll('#vc-menu a[href]').forEach((a) => {
-    a.addEventListener('click', (e) => {
-      if (e.defaultPrevented && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
-        window.location.href = a.href;
-      }
-    }, { capture: true });
-  });
-
-  // Submenús en móvil por clic (en desktop se abren con hover vía CSS)
-  subBtns.forEach((btn) => {
-    btn.addEventListener('click', (ev) => {
+  // --- Submenús en móvil (en desktop se abren con hover por CSS)
+  subBtns.forEach(btn=>{
+    btn.addEventListener('click', (ev)=>{
+      // solo activa por click si estamos en móvil o menú abierto
       const isMobile = window.matchMedia('(max-width: 900px)').matches || menu.classList.contains('open');
-      if (!isMobile) return; // en desktop, hover manda
+      if(!isMobile) return;
       ev.preventDefault();
-
-      const box  = btn.closest('.vc-has-sub');
+      const box = btn.closest('.vc-has-sub');
       const open = !box.classList.contains('open');
 
-      // Cerrar otros submenús
-      document.querySelectorAll('.vc-has-sub.open').forEach((o) => {
-        if (o !== box) {
-          o.classList.remove('open');
-          o.querySelector('.vc-subbtn')?.classList.remove('is-active');
-          o.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
-        }
-      });
+      // cerrar otros submenús
+      menu.querySelectorAll('.vc-has-sub.open').forEach(o=>{ if(o!==box) o.classList.remove('open'); });
 
       box.classList.toggle('open', open);
       btn.classList.toggle('is-active', open);
@@ -266,74 +245,62 @@
     });
   });
 
-  // Cerrar haciendo clic fuera y con ESC
-  document.addEventListener('click', (e) => {
-    if (menu && !menu.contains(e.target) && burger && !burger.contains(e.target)) closeAll();
+  // --- Cerrar haciendo clic fuera o con ESC
+  document.addEventListener('click', (e)=>{
+    if(!menu.contains(e.target) && !burger.contains(e.target)){
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.querySelectorAll('.vc-has-sub').forEach(n=>{
+        n.classList.remove('open');
+        n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
+        n.querySelector('.vc-subbtn')?.classList.remove('is-active');
+      });
+    }
   });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.querySelectorAll('.vc-has-sub').forEach(n=>{
+        n.classList.remove('open');
+        n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
+        n.querySelector('.vc-subbtn')?.classList.remove('is-active');
+      });
+    }
+  });
 
-  function closeAll() {
-    menu?.classList.remove('open');
-    burger?.setAttribute('aria-expanded','false');
-    burger?.setAttribute('aria-label','Abrir menú');
-    burger?.setAttribute('title','Abrir menú');
-    document.querySelectorAll('.vc-has-sub.open').forEach((n) => {
-      n.classList.remove('open');
-      n.querySelector('.vc-subbtn')?.classList.remove('is-active');
-      n.querySelector('.vc-subbtn')?.setAttribute('aria-expanded','false');
-    });
-  }
-
-  // Marcar activo según URL (normaliza para que funcione con y sin "/" final)
-  const normalize = (u) => (u || '').replace(/\/+$/, '');
+  // --- Marcar activo según URL (tus 3 enlaces válidos)
   const map = {
-    'nav-inicio':   'https://visualcorp-ec.github.io/Inicio',
-    'nav-contacto': 'https://visualcorp-ec.github.io/contacto',
-    'nav-promos':   'https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18'
+    'nav-inicio':   'https://visualcorp-ec.github.io/Inicio/',
+    'nav-contacto': 'https://visualcorp-ec.github.io/contacto/',
+    'nav-promos':   'https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/'
   };
-  const here = normalize(location.href);
-  Object.entries(map).forEach(([id, url]) => {
+  const here = location.href;
+  Object.entries(map).forEach(([id,url])=>{
     const a = document.getElementById(id);
-    if (a && here.startsWith(normalize(url))) {
-      a.setAttribute('aria-current', 'page');
+    if(a && here.startsWith(url)){
+      a.setAttribute('aria-current','page');
       a.classList.add('active');
     }
   });
 
-  // UX: scroll horizontal con rueda y arrastre en la barra del menú
+  // --- UX: scroll horizontal con rueda y arrastre para la barra
   (function enhanceMenuScroll(){
     if(!menu) return;
-    // Rueda vertical -> scroll horizontal
-    menu.addEventListener('wheel', (e) => {
+    // rueda vertical -> scroll horizontal
+    menu.addEventListener('wheel', (e)=>{
       const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY);
-      if (dy > dx) { menu.scrollLeft += e.deltaY; e.preventDefault(); }
-    }, { passive: false });
-
-    // Drag to scroll
-    let down = false, startX = 0, startLeft = 0;
-    menu.addEventListener('pointerdown', (e) => {
-      down = true; startX = e.pageX; startLeft = menu.scrollLeft;
-      if (menu.setPointerCapture) menu.setPointerCapture(e.pointerId);
-    });
-    menu.addEventListener('pointermove', (e) => {
-      if (!down) return;
-      menu.scrollLeft = startLeft - (e.pageX - startX);
-    });
-    const release = (e) => {
-      down = false;
-      try { menu.releasePointerCapture?.(e.pointerId); } catch {}
-    };
-    menu.addEventListener('pointerup', release);
-    menu.addEventListener('pointercancel', release);
-    menu.addEventListener('pointerleave', () => { down = false; });
+      if(dy > dx){ menu.scrollLeft += e.deltaY; e.preventDefault(); }
+    }, {passive:false});
+    // drag to scroll
+    let down=false, startX=0, startLeft=0;
+    menu.addEventListener('pointerdown',(e)=>{ down=true; startX=e.pageX; startLeft=menu.scrollLeft; menu.setPointerCapture(e.pointerId); });
+    menu.addEventListener('pointermove',(e)=>{ if(!down) return; menu.scrollLeft = startLeft - (e.pageX - startX); });
+    ['pointerup','pointercancel','pointerleave'].forEach(ev=> menu.addEventListener(ev, ()=> down=false));
   })();
-
-  // Año dinámico
-  const year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
-
 })();
 </script>
+
 
 </body>
 </html>

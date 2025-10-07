@@ -7,6 +7,10 @@
   <meta name="description" content="Sitio oficial de Visual Corp: diseño, impresión y publicidad en Milagro, Ecuador.">
 
   <link rel="icon" href="https://d1so26dimrz1o2.cloudfront.net/uploads/avatars/g32HrUdRExn93slL9Joo4T2nYbEXrN7Pog52QeH8.jpg">
+
+  <!-- Rendimiento: fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -99,13 +103,13 @@
   <div class="wrap">
     <!-- ===== NAVBAR ===== -->
     <header class="vc-header" role="banner">
-      <a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp">
+      <a class="vc-brand" href="https://visualcorp-ec.github.io/Inicio/" aria-label="Visual Corp - Inicio">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Visual Corp" width="46" height="46">
         <span>Visual Corp</span>
       </a>
     
-      <button class="vc-burger" aria-controls="vc-menu" aria-expanded="false" title="Abrir menú">
-        <i class="fa-solid fa-bars"></i>
+      <button class="vc-burger" type="button" aria-controls="vc-menu" aria-expanded="false" aria-label="Abrir menú" title="Abrir menú">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
       </button>
     
       <nav id="vc-menu" class="vc-menu" aria-label="Menú principal">
@@ -116,7 +120,7 @@
     
         <!-- Bloques con submenú (pronto) -->
         <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">
+          <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
             Productos <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div class="vc-submenu" role="menu" aria-label="Productos">
@@ -130,7 +134,7 @@
         </div>
     
         <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">
+          <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
             Impresiones <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div class="vc-submenu" role="menu" aria-label="Impresiones">
@@ -142,7 +146,7 @@
         </div>
     
         <div class="vc-has-sub">
-          <button class="vc-subbtn" type="button" data-pending="" aria-expanded="false">
+          <button class="vc-subbtn" type="button" data-pending aria-expanded="false">
             Servicios <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div class="vc-submenu" role="menu" aria-label="Servicios">
@@ -154,35 +158,36 @@
       </nav>
     </header>
 
+    <main>
+      <!-- ===== Hero de inicio (demo) ===== -->
+      <section class="hero">
+        <h1>Diseño e impresión que hacen ruido 🔊</h1>
+        <p>18 años creando letreros, neones, gigantografías y más. Conoce nuestras promos y contáctanos.</p>
+        <div class="actions" style="margin-top:12px">
+          <a class="btn" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Ver Promociones</a>
+          <a class="btn ghost" href="https://visualcorp-ec.github.io/contacto/">Contacto</a>
+        </div>
+      </section>
 
-    <!-- ===== Hero de inicio (demo) ===== -->
-    <section class="hero">
-      <h1>Diseño e impresión que hacen ruido 🔊</h1>
-      <p>18 años creando letreros, neones, gigantografías y más. Conoce nuestras promos y contáctanos.</p>
-      <div class="actions" style="margin-top:12px">
-        <a class="btn" href="https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/">Ver Promociones</a>
-        <a class="btn ghost" href="https://visualcorp-ec.github.io/contacto/">Contacto</a>
-      </div>
-    </section>
-
-    <!-- Demo de tarjetas -->
-    <section class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin:20px 0 36px">
-      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
-        <h3 style="margin:0 0 6px">Catálogo</h3><p style="margin:0;color:var(--muted)">Pronto. Consulta productos destacados en Promociones.</p>
-      </article>
-      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
-        <h3 style="margin:0 0 6px">Productos</h3><p style="margin:0;color:var(--muted)">Pronto. Letras 3D, neón, rótulos, stands, stickers…</p>
-      </article>
-      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
-        <h3 style="margin:0 0 6px">Impresiones</h3><p style="margin:0;color:var(--muted)">Pronto. Gigantografías, microperforado, banners, vinil.</p>
-      </article>
-      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
-        <h3 style="margin:0 0 6px">Servicios</h3><p style="margin:0;color:var(--muted)">Pronto. Diseño gráfico, instalación, mantenimiento.</p>
-      </article>
-      <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
-        <h3 style="margin:0 0 6px">Taller</h3><p style="margin:0;color:var(--muted)">Pronto. Detrás de cámaras, materiales y procesos.</p>
-      </article>
-    </section>
+      <!-- Demo de tarjetas -->
+      <section class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin:20px 0 36px">
+        <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+          <h3 style="margin:0 0 6px">Catálogo</h3><p style="margin:0;color:var(--muted)">Pronto. Consulta productos destacados en Promociones.</p>
+        </article>
+        <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+          <h3 style="margin:0 0 6px">Productos</h3><p style="margin:0;color:var(--muted)">Pronto. Letras 3D, neón, rótulos, stands, stickers…</p>
+        </article>
+        <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+          <h3 style="margin:0 0 6px">Impresiones</h3><p style="margin:0;color:var(--muted)">Pronto. Gigantografías, microperforado, banners, vinil.</p>
+        </article>
+        <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+          <h3 style="margin:0 0 6px">Servicios</h3><p style="margin:0;color:var(--muted)">Pronto. Diseño gráfico, instalación, mantenimiento.</p>
+        </article>
+        <article class="card" style="background:#111318;border:1px solid var(--sep);border-radius:16px;padding:16px">
+          <h3 style="margin:0 0 6px">Taller</h3><p style="margin:0;color:var(--muted)">Pronto. Detrás de cámaras, materiales y procesos.</p>
+        </article>
+      </section>
+    </main>
 
     <div class="foot" style="color:var(--muted); text-align:center; margin:16px 0 6px">
       © <span id="year">2025</span> Visual Corp · Milagro, Ecuador
@@ -201,7 +206,6 @@
 
   <script>
 (() => {
-  // Utilidad segura para buscar el <a> más cercano
   const closestLink = (t) => (t instanceof Element) ? t.closest('a[href]') : null;
 
   const header = document.querySelector('.vc-header');
@@ -217,6 +221,8 @@
   burger?.addEventListener('click', () => {
     const open = menu.classList.toggle('open');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    burger.setAttribute('title',      open ? 'Cerrar menú' : 'Abrir menú');
   });
 
   // ✅ Cerrar el menú DESPUÉS de hacer clic en un enlace (no bloquea la navegación)
@@ -229,7 +235,6 @@
   // Plan B: si algún script hizo preventDefault al <a>, forzar navegación
   document.querySelectorAll('#vc-menu a[href]').forEach((a) => {
     a.addEventListener('click', (e) => {
-      // Click izquierdo sin modificadores
       if (e.defaultPrevented && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
         window.location.href = a.href;
       }
@@ -261,7 +266,7 @@
     });
   });
 
-  // Cerrar haciendo clic fuera y con ESC (sin interferir con clicks dentro del menú)
+  // Cerrar haciendo clic fuera y con ESC
   document.addEventListener('click', (e) => {
     if (menu && !menu.contains(e.target) && burger && !burger.contains(e.target)) closeAll();
   });
@@ -270,6 +275,8 @@
   function closeAll() {
     menu?.classList.remove('open');
     burger?.setAttribute('aria-expanded','false');
+    burger?.setAttribute('aria-label','Abrir menú');
+    burger?.setAttribute('title','Abrir menú');
     document.querySelectorAll('.vc-has-sub.open').forEach((n) => {
       n.classList.remove('open');
       n.querySelector('.vc-subbtn')?.classList.remove('is-active');
@@ -277,16 +284,17 @@
     });
   }
 
-  // Marcar activo según URL (3 rutas válidas)
+  // Marcar activo según URL (normaliza para que funcione con y sin "/" final)
+  const normalize = (u) => (u || '').replace(/\/+$/, '');
   const map = {
-    'nav-inicio':   'https://visualcorp-ec.github.io/Inicio/',
-    'nav-contacto': 'https://visualcorp-ec.github.io/contacto/',
-    'nav-promos':   'https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18/'
+    'nav-inicio':   'https://visualcorp-ec.github.io/Inicio',
+    'nav-contacto': 'https://visualcorp-ec.github.io/contacto',
+    'nav-promos':   'https://visualcorp-ec.github.io/PROMO-ANIVERSARIO18'
   };
-  const here = location.href;
+  const here = normalize(location.href);
   Object.entries(map).forEach(([id, url]) => {
     const a = document.getElementById(id);
-    if (a && here.startsWith(url)) {
+    if (a && here.startsWith(normalize(url))) {
       a.setAttribute('aria-current', 'page');
       a.classList.add('active');
     }
@@ -313,12 +321,17 @@
     });
     const release = (e) => {
       down = false;
-      if (menu.releasePointerCapture) try { menu.releasePointerCapture(e.pointerId); } catch {}
+      try { menu.releasePointerCapture?.(e.pointerId); } catch {}
     };
     menu.addEventListener('pointerup', release);
     menu.addEventListener('pointercancel', release);
     menu.addEventListener('pointerleave', () => { down = false; });
   })();
+
+  // Año dinámico
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+
 })();
 </script>
 
